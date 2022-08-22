@@ -164,6 +164,10 @@ abstract class PackageServiceProvider extends ServiceProvider
             }
         }
 
+        if(is_numeric(substr($migrationFileName, 0, 4))) {
+            return database_path($migrationsPath . Str::of($migrationFileName)->snake()->finish('.php'));
+        }
+
         return database_path($migrationsPath . $now->format('Y_m_d_His') . '_' . Str::of($migrationFileName)->snake()->finish('.php'));
     }
 
